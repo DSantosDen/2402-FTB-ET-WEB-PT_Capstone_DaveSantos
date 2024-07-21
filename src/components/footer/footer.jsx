@@ -2,7 +2,7 @@ import Logo from "../../assets/img/Junk_Vault_Logo_White.png";
 
 const Footer = () => {
   return (
-    <footer className="p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-800">
+    <footer className="p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl text-center">
         <a
           href="#"
@@ -23,11 +23,6 @@ const Footer = () => {
           <li>
             <a href="#" className="mr-4 hover:underline md:mr-6">
               Premium
-            </a>
-          </li>
-          <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6">
-              Campaigns
             </a>
           </li>
           <li>
