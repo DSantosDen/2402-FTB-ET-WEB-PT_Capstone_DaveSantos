@@ -26,7 +26,7 @@ const TermsOfUse = () => {
             </ul>
           </div>
           <div className="col-span-3">
-            <h1 className="text-3xl font-bold mb-4">Terms Of Use Notice</h1>
+            <h1 className="text-3xl font-bold mb-6">Terms Of Use Notice</h1>
             <p className="text-justify mb-4">
               ELEMENTUM TEMPUS EGESTAS SED SED RISUS PRETIUM. EU AUGUE UT LECTUS
               ARCU BIBENDUM AT VARIUS. LEO IN VITAE TURPIS MASSA SED ELEMENTUM.
@@ -47,9 +47,9 @@ const TermsOfUse = () => {
               PULVINAR ELEMENTUM INTEGER ENIM NEQUE VOLUTPAT. TINCIDUNT NUNC
               PULVINAR SAPIEN ET. ULTRICES MI TEMPUS IMPERDIET NULLA.
             </p>
-            <h2 className="text-2xl font-semibold mb-4">1. Acknowledgement</h2>
-            <h3 className="text-xl font-semibold mb-2">1.1</h3>
-            <p className="text-justify mb-4">
+            <h2 className="text-2xl font-semibold mt-6">1. Acknowledgement</h2>
+            <h3 className="text-xl font-semibold mt-2">1.1</h3>
+            <p className="text-justify">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
               Pellentesque habitant morbi tristique senectus et netus. Lobortis
@@ -66,8 +66,8 @@ const TermsOfUse = () => {
               auctor. Ipsum consequat nisl vel pretium. Accumsan in nisl nisi
               scelerisque eu.
             </p>
-            <h2 className="text-2xl font-semibold mb-4">2. Registration</h2>
-            <h3 className="text-xl font-semibold mb-2">2.1</h3>
+            <h2 className="text-2xl font-semibold mt-6">2. Registration</h2>
+            <h3 className="text-xl font-semibold mt-2">2.1</h3>
             <p className="text-justify">
               Vel orci porta non pulvinar neque laoreet suspendisse interdum.
               Arcu felis bibendum ut tristique et egestas quis. Duis tristique
@@ -82,10 +82,10 @@ const TermsOfUse = () => {
               tempus quam pellentesque. Morbi quis commodo odio aenean. Commodo
               quis imperdiet massa tincidunt nunc pulvinar.
             </p>
-            <h2 className="text-2xl font-semibold mb-4">
+            <h2 className="text-2xl font-semibold mt-6">
               3. Term and Termination
             </h2>
-            <h3 className="text-xl font-semibold mb-2">3.1</h3>
+            <h3 className="text-xl font-semibold mt-2">3.1</h3>
             <p className="text-justify">
               Convallis posuere morbi leo urna. Eget nulla facilisi etiam
               dignissim diam quis enim. Fermentum odio eu feugiat pretium nibh
@@ -100,11 +100,11 @@ const TermsOfUse = () => {
               pellentesque habitant morbi tristique senectus et. Fames ac turpis
               egestas sed tempus urna et pharetra.
             </p>
-            <h2 className="text-2xl font-semibold mb-4">
+            <h2 className="text-2xl font-semibold mt-6">
               4. Warranty Disclaimer and Limitation of Liability
             </h2>
-            <h3 className="text-xl font-semibold mb-2">4.1</h3>
-            <p className="text-justify mb-4">
+            <h3 className="text-xl font-semibold mt-2">4.1</h3>
+            <p className="text-justify">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet
               risus nullam eget felis eget nunc. Amet facilisis magna etiam
@@ -115,7 +115,7 @@ const TermsOfUse = () => {
               aliquam. Gravida neque convallis a cras semper auctor. Diam quis
               enim lobortis scelerisque fermentum dui faucibus in.
             </p>
-            <h3 className="text-xl font-semibold mb-2">4.2</h3>
+            <h3 className="text-xl font-semibold mt-2">4.2</h3>
             <p className="text-justify mb-4">
               Facilisis magna etiam tempor orci eu. Tincidunt nunc pulvinar
               sapien et. Pulvinar sapien et ligula ullamcorper. Tristique magna
@@ -123,7 +123,7 @@ const TermsOfUse = () => {
               neque. Egestas diam in arcu cursus euismod quis viverra nibh cras.
               Non odio euismod lacinia at quis risus sed.
             </p>
-            <h3 className="text-xl font-semibold mb-2">4.3</h3>
+            <h3 className="text-xl font-semibold mt-2">4.3</h3>
             <p className="text-justify mb-4">
               A lacus vestibulum sed arcu non odio. Adipiscing diam donec
               adipiscing tristique. Erat nam at lectus urna duis convallis
@@ -137,7 +137,7 @@ const TermsOfUse = () => {
               vitae turpis massa sed. Lectus mauris ultrices eros in cursus
               turpis. Sollicitudin nibh sit amet commodo nulla facilisi nullam.
             </p>
-            <h3 className="text-xl font-semibold mb-2">4.4</h3>
+            <h3 className="text-xl font-semibold mt-2">4.4</h3>
             <p className="text-justify mb-4">
               Purus ut faucibus pulvinar elementum. Id donec ultrices tincidunt
               arcu. Amet mattis vulputate enim nulla. Condimentum mattis
