@@ -22,11 +22,6 @@ const Footer = () => {
           </li>
           <li>
             <a href="#" className="mr-4 hover:underline md:mr-6">
-              Premium
-            </a>
-          </li>
-          <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6">
               Terms and Conditions
             </a>
           </li>
