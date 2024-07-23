@@ -1,4 +1,4 @@
-import LogGoogle from "../../assets/img/icons8-google-96.png";
+import LogoGoogle from "../../assets/img/icons8-google-96.png";
 import LogoApple from "../../assets/img/icons8-apple-50.png";
 
 const SignUpForm = () => {
@@ -9,14 +9,21 @@ const SignUpForm = () => {
           Create your Free Account
         </h2>
         <div className="flex justify-between mb-6">
-          <button className="bg-white text-gray-800 font-semibold py-2 px-4 rounded-lg flex items-center w-full mr-2">
-            <img src={LogGoogle} className="h-8" alt="Junk_Vault_Logo_White" />
-            Sign up with Google
-          </button>
-          <button className="bg-white text-gray-800 font-semibold py-2 px-4 rounded-lg flex items-center w-full ml-2">
-            <img src={LogoApple} className="h-8" alt="Junk_Vault_Logo_White" />
-            Sign up with Apple
-          </button>
+          <a href="https://accounts.google.com/signup" className="w-full mr-2">
+            <button className="bg-white text-gray-800 font-semibold py-2 px-4 rounded-lg flex items-center w-full">
+              <img src={LogoGoogle} className="h-8" alt="Google logo" />
+              <span className="ml-2">Sign up with Google</span>
+            </button>
+          </a>
+          <a
+            href="https://appleid.apple.com/account#!&page=create"
+            className="w-full ml-2"
+          >
+            <button className="bg-white text-gray-800 font-semibold py-2 px-4 rounded-lg flex items-center w-full">
+              <img src={LogoApple} className="h-8" alt="Apple logo" />
+              <span className="ml-2">Sign up with Apple</span>
+            </button>
+          </a>
         </div>
 
         <div className="flex items-center mb-6">
@@ -49,6 +56,7 @@ const SignUpForm = () => {
               <option>United States</option>
               <option>Canada</option>
               <option>United Kingdom</option>
+              <option>LaLa Land</option>
               {/* Add more countries as needed */}
             </select>
           </div>
@@ -68,14 +76,13 @@ const SignUpForm = () => {
             <label className="text-gray-400" htmlFor="terms">
               By signing up, you are creating a Junk Vault account, and you
               agree to Junk Vault's{" "}
-              <a href="#" className="text-blue-700 hover:underline">
+              <a href="/terms_of_use" className="text-blue-700 hover:underline">
                 Terms of Use
               </a>{" "}
               and{" "}
-              <a href="#" className="text-blue-700 hover:underline">
+              <a href="/terms_of_use" className="text-blue-700 hover:underline">
                 Privacy Policy
               </a>
-              .
             </label>
           </div>
           <button className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700">
@@ -84,7 +91,7 @@ const SignUpForm = () => {
         </form>
         <p className="mt-4 text-center text-gray-400">
           Already have an account?{" "}
-          <a href="#" className="text-blue-700 hover:underline">
+          <a href="/login" className="text-blue-700 hover:underline">
             Sign in here
           </a>
         </p>
@@ -92,5 +99,4 @@ const SignUpForm = () => {
     </div>
   );
 };
-
 export default SignUpForm;

@@ -1,4 +1,4 @@
-import LogGoogle from "../../assets/img/icons8-google-96.png";
+import LogoGoogle from "../../assets/img/icons8-google-96.png";
 import LogoApple from "../../assets/img/icons8-apple-50.png";
 
 const SignUpForm = () => {
@@ -9,14 +9,22 @@ const SignUpForm = () => {
           Welcome to where bad quality isn't just purchased, it's worshipped.
         </h2>
         <div className="flex justify-between mb-6">
-          <button className="bg-white text-gray-800 font-semibold py-2 px-4 rounded-lg flex items-center w-full mr-2">
-            <img src={LogGoogle} className="h-8" alt="Junk_Vault_Logo_White" />
-            Sign up with Google
-          </button>
-          <button className="bg-white text-gray-800 font-semibold py-2 px-4 rounded-lg flex items-center w-full ml-2">
-            <img src={LogoApple} className="h-8" alt="Junk_Vault_Logo_White" />
-            Sign up with Apple
-          </button>
+          <a href="https://accounts.google.com/signup" className="w-full mr-2">
+            <button className="bg-white text-gray-800 font-semibold py-2 px-4 rounded-lg flex items-center w-full">
+              <img src={LogoGoogle} className="h-8" alt="Google logo" />
+              <span className="ml-2">Login with Google</span>
+            </button>
+          </a>
+
+          <a
+            href="https://appleid.apple.com/account#!&page=create"
+            className="w-full ml-2"
+          >
+            <button className="bg-white text-gray-800 font-semibold py-2 px-4 rounded-lg flex items-center w-full">
+              <img src={LogoApple} className="h-8" alt="Apple logo" />
+              <span className="ml-2">Login with Apple</span>
+            </button>
+          </a>
         </div>
 
         <div className="flex items-center mb-6">
