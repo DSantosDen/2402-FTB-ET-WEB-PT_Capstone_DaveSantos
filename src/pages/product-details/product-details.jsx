@@ -1,3 +1,6 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
 const product = {
   id: 1,
   title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
@@ -13,23 +16,41 @@ const product = {
 };
 
 const ProductDetails = () => {
+  const [data, setData] = useState({});
+  const { id } = useParams();
+  console.log({ id });
+  useEffect(() => {
+    window.scroll(0, 0);
+    fetchDetail();
+  }, []);
+
+  const fetchDetail = async () => {
+    try {
+      let res = await axios.get("https://fakestoreapi.com/products/" + id);
+      setData(res.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  console.log({ data });
+
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
-      <img className="w-full" src={product.image} alt={product.title} />
+    <div className="max-w-sm rounded overflow-hidden mx-auto pt-10 my-20 bg-white">
+      <img className="h-[400px] mx-auto" src={data.image} alt={data.title} />
       <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">{product.title}</div>
-        <p className="text-gray-700 text-base">{product.description}</p>
-        <div className="font-bold text-lg mb-2">${product.price}</div>
+        <div className="font-bold text-xl mb-2">{data.title}</div>
+        <p className="text-gray-700 text-base">{data.description}</p>
+        <div className="font-bold text-lg mb-2">${data.price}</div>
       </div>
       <div className="px-6 pt-4 pb-2">
         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-          Category: {product.category}
+          Category: {data.category}
         </span>
         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-          Rating: {product.rating.rate}
+          Rating: {data.rating?.rate}
         </span>
         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-          Reviews: {product.rating.count}
+          Reviews: {data.rating?.count}
         </span>
       </div>
     </div>

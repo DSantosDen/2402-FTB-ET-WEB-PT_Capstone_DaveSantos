@@ -1,13 +1,28 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import productimag from "../../assets/img/sample01_Backpack_Image.jpg";
 
 const ProductCard = ({ id, title, img, price }) => {
+  const navigate = useNavigate();
+  const gotoDetail = () => {
+    navigate("/product/" + id);
+  };
+
   return (
     <div className="w-[200px]  p-2 pt-0  m-2 rounded-md bg-white dark:bg-gray-800">
       <nav className="flex mb-4" aria-label="Breadcrumb"></nav>
       <div className="flex flex-col">
-        <img src={img} alt={title} className="w-full h-[200px] rounded-lg" />
+        <img
+          onClick={gotoDetail}
+          src={img}
+          alt={title}
+          className="w-full hover:cursor-pointer h-[200px] rounded-lg"
+        />
         <div className="flex flex-col mt-4 ">
-          <h1 className="text-sm font-bold text-gray-900 dark:text-white mb-4">
+          <h1
+            onClick={gotoDetail}
+            className="text-sm hover:underline hover:cursor-pointer font-bold text-gray-900 dark:text-white mb-4"
+          >
             {title}
           </h1>
           <div className="flex justify-between items-center">
