@@ -1,4 +1,9 @@
+import { useEffect } from "react";
+
 const HelpPage = () => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <div className="min-h-screen bg-gray-800 text-white p-8">
       <h1 className="text-3xl font-semibold mb-6">

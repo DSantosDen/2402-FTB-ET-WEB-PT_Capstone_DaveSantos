@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import productimag from "../../assets/img/sample01_Backpack_Image.jpg";
 
 const ProductCard = ({ id, title, img, price }) => {
   const navigate = useNavigate();

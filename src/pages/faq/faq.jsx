@@ -1,4 +1,9 @@
+import { useEffect } from "react";
+
 const PageFaq = () => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <div className="bg-gray-50 text-gray-900">
       <div className="container mx-auto p-4">
