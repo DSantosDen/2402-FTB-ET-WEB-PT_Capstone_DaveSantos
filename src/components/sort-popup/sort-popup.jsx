@@ -1,15 +1,24 @@
 import { useState } from "react";
+import { FaTimes } from "react-icons/fa";
 
-const SortPopup = ({ customeSort }) => {
+const SortPopup = ({ customeSort, handleCloseSortPopup }) => {
   const [sortBy, setSortBy] = useState("price");
   const [sortType, setSortType] = useState(1);
 
   const handleClick = () => {
     customeSort(sortBy, sortType);
+    handleCloseSortPopup();
   };
+
   return (
     <div className="w-full h-[100vh] fixed bg-[#00000082] flex justify-center ">
       <div className="bg-white relative max-w-[400px] h-[400px] rounded-md w-full mt-[10%]">
+        <button
+          onClick={handleCloseSortPopup}
+          className="w-[25px] h-[25px] grid place-content-center border border-1 rounded-full bg-white border-black absolute top-[-10px] right-[-1px]"
+        >
+          <FaTimes />
+        </button>
         <div>
           <h4 className="mt-4 ml-2">Title</h4>
           <button

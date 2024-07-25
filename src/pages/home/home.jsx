@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import Card from "../../components/cards/cards";
 import axios from "axios";
 import SortPopup from "../../components/sort-popup/sort-popup";
+import FilterPopup from "../../components/filter-popup/filter-popup";
 
 function Home() {
   const [ogdata, setOgData] = useState([]);
   const [data, setData] = useState([]);
+  const [showSortingPopup, setShowSortingPopup] = useState(false);
   useEffect(() => {
     fetchData();
   }, []);
@@ -35,9 +37,43 @@ function Home() {
     setData([...sortedData]);
   }
 
+  const handleCloseSortPopup = () => {
+    setShowSortingPopup(false);
+  };
+
+  const handleFilter = (category, min_price, max_price) => {
+    let result = ogdata;
+    if (category) {
+      result = result.filter((obj) => obj.category == category);
+    }
+
+    if (min_price) {
+      result = result.filter((obj) => obj.price >= min_price);
+    }
+
+    if (max_price) {
+      result = result.filter((obj) => obj.price <= max_price);
+    }
+    setData([...result]);
+  };
   return (
     <>
-      <SortPopup customeSort={customeSort} />
+      <FilterPopup />
+      {showSortingPopup && (
+        <SortPopup
+          customeSort={customeSort}
+          handleCloseSortPopup={handleCloseSortPopup}
+        />
+      )}
+      <div className="flex justify-end">
+        <button
+          onClick={() => setShowSortingPopup(true)}
+          className="bg-gray-300 text-sm px-5 py-2 rounded-sm my-2 mr-2"
+        >
+          Sort
+        </button>
+      </div>
+
       <div className="flex flex-wrap mx-auto justify-center">
         {data.map((item) => (
           <Card
