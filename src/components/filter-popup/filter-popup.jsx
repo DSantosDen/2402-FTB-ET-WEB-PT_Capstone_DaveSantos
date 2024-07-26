@@ -2,9 +2,9 @@ import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 
 const FilterPopup = ({ customFilter, handleCloseFilterPopup }) => {
-  const [category, setCategory] = useState("category");
-  const [min_price, setMinPrice] = useState(1);
-  const [max_price, setMaxPrice] = useState(1);
+  const [category, setCategory] = useState("");
+  const [min_price, setMinPrice] = useState("");
+  const [max_price, setMaxPrice] = useState("");
 
   const handleClick = () => {
     customFilter(category, min_price, max_price);
@@ -25,7 +25,6 @@ const FilterPopup = ({ customFilter, handleCloseFilterPopup }) => {
             <button
               onClick={() => {
                 setCategory("Category1");
-                setSortType(1);
               }}
               className="btn bg-slate-300 px-2 py-1 m-2 "
             >
@@ -33,8 +32,7 @@ const FilterPopup = ({ customFilter, handleCloseFilterPopup }) => {
             </button>
             <button
               onClick={() => {
-                setSortBy("Category2");
-                setSortType(1);
+                setCategory("Category2");
               }}
               className="btn bg-slate-300 px-2 py-1 m-2 "
             >
@@ -42,14 +40,18 @@ const FilterPopup = ({ customFilter, handleCloseFilterPopup }) => {
             </button>
             <button
               onClick={() => {
-                setSortBy("Category3");
-                setSortType(1);
+                setCategory("Category3");
               }}
               className="btn bg-slate-300 px-2 py-1 m-2 "
             >
               Category3
             </button>
-            <button className="btn bg-slate-300 px-2 py-1 m-2 ">
+            <button
+              onClick={() => {
+                setCategory("Category4");
+              }}
+              className="btn bg-slate-300 px-2 py-1 m-2 "
+            >
               Category4
             </button>
           </div>
@@ -57,6 +59,9 @@ const FilterPopup = ({ customFilter, handleCloseFilterPopup }) => {
             <div className="ml-2 mt-5">
               <label>Min Price</label>
               <input
+                //keep the values to two decimal places
+                type="number"
+                step="0.01"
                 placeholder="Enter Min Price"
                 className="bg-slate-200 block h-[30px] px-2 mt-1"
               />
@@ -64,6 +69,9 @@ const FilterPopup = ({ customFilter, handleCloseFilterPopup }) => {
             <div className="ml-2 mt-5">
               <label>Max Price</label>
               <input
+                //keep the values to two decimal places
+                type="number"
+                step="0.01"
                 placeholder="Enter Max Price"
                 className="bg-slate-200 block h-[30px] px-2 mt-1"
               />
