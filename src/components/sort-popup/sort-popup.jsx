@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 
-const SortPopup = ({ customeSort, handleCloseSortPopup }) => {
+const SortPopup = ({ customSort, handleCloseSortPopup }) => {
   const [sortBy, setSortBy] = useState("price");
   const [sortType, setSortType] = useState(1);
 
   const handleClick = () => {
-    customeSort(sortBy, sortType);
+    customSort(sortBy, sortType);
     handleCloseSortPopup();
   };
 

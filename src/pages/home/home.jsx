@@ -8,6 +8,7 @@ function Home() {
   const [ogdata, setOgData] = useState([]);
   const [data, setData] = useState([]);
   const [showSortingPopup, setShowSortingPopup] = useState(false);
+  const [showFilterPopup, setShowFilterPopup] = useState(false);
   useEffect(() => {
     fetchData();
   }, []);
@@ -18,7 +19,7 @@ function Home() {
     setOgData(res.data);
   };
 
-  function customeSort(sortBy, sortType) {
+  function customSort(sortBy, sortType) {
     let sortedData = [];
     if (typeof ogdata[0][sortBy] == "number") {
       if (sortType == 1) {
@@ -40,8 +41,10 @@ function Home() {
   const handleCloseSortPopup = () => {
     setShowSortingPopup(false);
   };
-
-  const handleFilter = (category, min_price, max_price) => {
+  const handleCloseFilterPopup = () => {
+    setShowFilterPopup(false);
+  };
+  const customFilter = (category, min_price, max_price) => {
     let result = ogdata;
     if (category) {
       result = result.filter((obj) => obj.category == category);
@@ -58,10 +61,23 @@ function Home() {
   };
   return (
     <>
-      <FilterPopup />
+      {showFilterPopup && (
+        <FilterPopup
+          customFilter={customFilter}
+          handleCloseFilterPopup={handleCloseFilterPopup}
+        />
+      )}
+      <div className="flex justify-end">
+        <button
+          onClick={() => setShowFilterPopup(true)}
+          className="bg-gray-300 text-sm px-5 py-2 rounded-sm my-2 mr-2"
+        >
+          Filter
+        </button>
+      </div>
       {showSortingPopup && (
         <SortPopup
-          customeSort={customeSort}
+          customSort={customSort}
           handleCloseSortPopup={handleCloseSortPopup}
         />
       )}
