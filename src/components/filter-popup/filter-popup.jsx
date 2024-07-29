@@ -11,6 +11,11 @@ const FilterPopup = ({ customFilter, handleCloseFilterPopup }) => {
     handleCloseFilterPopup();
   };
 
+  const reset = () => {
+    customFilter(undefined, undefined, undefined);
+    handleCloseFilterPopup();
+  };
+
   return (
     <div className="w-full h-[100vh] fixed bg-[#00000082] flex justify-center ">
       <div className="bg-white relative max-w-[400px] h-[400px] rounded-md w-full mt-[10%]">
@@ -24,35 +29,43 @@ const FilterPopup = ({ customFilter, handleCloseFilterPopup }) => {
           <div className="mt-5">
             <button
               onClick={() => {
-                setCategory("Category1");
+                setCategory("jewelery");
               }}
-              className="btn bg-slate-300 px-2 py-1 m-2 "
+              className={`btn ${
+                category == "jewelery" ? "bg-blue-600" : "bg-slate-300"
+              } px-2 py-1 m-2`}
             >
-              Category1
+              Jewerlery
             </button>
             <button
               onClick={() => {
-                setCategory("Category2");
+                setCategory("electronics");
               }}
-              className="btn bg-slate-300 px-2 py-1 m-2 "
+              className={`btn ${
+                category == "electronics" ? "bg-blue-600" : "bg-slate-300"
+              } px-2 py-1 m-2`}
             >
-              Category2
+              Electronics
             </button>
             <button
               onClick={() => {
-                setCategory("Category3");
+                setCategory("men's clothing");
               }}
-              className="btn bg-slate-300 px-2 py-1 m-2 "
+              className={`btn ${
+                category == "men's clothing" ? "bg-blue-600" : "bg-slate-300"
+              } px-2 py-1 m-2`}
             >
-              Category3
+              Men's Clothing
             </button>
             <button
               onClick={() => {
-                setCategory("Category4");
+                setCategory("women's clothing");
               }}
-              className="btn bg-slate-300 px-2 py-1 m-2 "
+              className={`btn ${
+                category == "women's clothing" ? "bg-blue-600" : "bg-slate-300"
+              } px-2 py-1 m-2`}
             >
-              Category4
+              Women's Clothing
             </button>
           </div>
           <div>
@@ -61,8 +74,8 @@ const FilterPopup = ({ customFilter, handleCloseFilterPopup }) => {
               <input
                 //keep the values to two decimal places
                 type="number"
-                step="0.01"
                 placeholder="Enter Min Price"
+                onChange={(e) => setMinPrice(parseFloat(e.target.value))}
                 className="bg-slate-200 block h-[30px] px-2 mt-1"
               />
             </div>
@@ -71,7 +84,7 @@ const FilterPopup = ({ customFilter, handleCloseFilterPopup }) => {
               <input
                 //keep the values to two decimal places
                 type="number"
-                step="0.01"
+                onChange={(e) => setMaxPrice(parseFloat(e.target.value))}
                 placeholder="Enter Max Price"
                 className="bg-slate-200 block h-[30px] px-2 mt-1"
               />
@@ -79,6 +92,12 @@ const FilterPopup = ({ customFilter, handleCloseFilterPopup }) => {
           </div>
         </div>
         <div className="absolute bottom-0 right-1">
+          <button
+            onClick={reset}
+            className="text-sm mr-3 cursor-pointer  text-black py-2 px-4  m-2 rounded-md"
+          >
+            Reset
+          </button>
           <button
             onClick={handleClick}
             className="text-sm bg-blue-600 text-white py-2 px-4  m-2 rounded-md"
