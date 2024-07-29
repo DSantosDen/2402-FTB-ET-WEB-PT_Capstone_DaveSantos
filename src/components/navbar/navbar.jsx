@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import Logo from "../../assets/img/Junk_Vault_Logo_White.png";
+import { FaCaretDown, FaCartPlus } from "react-icons/fa";
+import { FaCartShopping } from "react-icons/fa6";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const cart = useSelector((state) => state.cart);
   return (
     <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -15,6 +19,15 @@ const Navbar = () => {
           </span>
         </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+          <button
+            type="button"
+            className="text-white mr-8 text-[25px] relative"
+          >
+            <div className="bg-red-600 w-[15px] h-[15px] text-white absolute right-[-8px] top-[-4px] text-[10px] font-bold grid place-content-center rounded-full">
+              {cart.length}
+            </div>
+            <FaCartShopping />
+          </button>
           <button
             type="button"
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -46,7 +59,7 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
-        <div
+        {/*  <div
           className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
           id="navbar-sticky"
         >
@@ -85,7 +98,7 @@ const Navbar = () => {
               </a>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </nav>
   );
