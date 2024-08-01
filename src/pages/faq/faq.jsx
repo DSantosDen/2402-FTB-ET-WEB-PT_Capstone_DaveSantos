@@ -1,5 +1,7 @@
+//imports
 import { useEffect } from "react";
 
+//page content using tailwind
 const PageFaq = () => {
   useEffect(() => {
     window.scroll(0, 0);

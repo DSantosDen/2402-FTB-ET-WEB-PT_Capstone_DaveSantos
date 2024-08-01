@@ -1,7 +1,14 @@
+//imports
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+/*component to initialize data using useState
+extract id using useParams
+the useEffect hook is used to fetch data when components mounts
+move to top of the page using window scroll
+calls the function fetchDetail
+ */
 const ProductDetails = () => {
   const [data, setData] = useState({});
   const { id } = useParams();
@@ -11,6 +18,10 @@ const ProductDetails = () => {
     fetchDetail();
   }, []);
 
+  /*function creates a GET request to retrieve product details
+  from API using axios, product details update the data state
+  with setData
+   */
   const fetchDetail = async () => {
     try {
       let res = await axios.get("https://fakestoreapi.com/products/" + id);
@@ -20,7 +31,8 @@ const ProductDetails = () => {
     }
   };
   console.log({ data });
-
+  /*rendering of the product details
+  (image, title, description, price, category, and rating)*/
   return (
     <div className="max-w-sm rounded overflow-hidden mx-auto pt-10 my-20 bg-white">
       <img className="h-[400px] mx-auto" src={data.image} alt={data.title} />

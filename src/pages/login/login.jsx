@@ -1,14 +1,20 @@
-import LogoGoogle from "../../assets/img/icons8-google-96.png";
-import LogoApple from "../../assets/img/icons8-apple-50.png";
+//imports
 import { useState } from "react";
 import axios from "axios";
 
+/*useState function component to update the data state
+set initial values for username and password to null*/
 const SignUpForm = () => {
   const [data, setData] = useState({
     username: null,
     password: null,
   });
 
+  /*event handlers to manage changes in input fields
+  log the name and value of the input field being changed
+  updates the "data" state with the new value for the input
+  field that triggered the change
+  */
   const onChange = (e) => {
     console.log({
       name: e.target.name,
@@ -17,6 +23,12 @@ const SignUpForm = () => {
     setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  /*function handles form submission, prevents default form submission behavior
+  send a POST request to API using axios with the username and password
+  from the data state.
+  if sucess, stores the received token in localStorage
+  if not then an alert message is displayed
+  */
   const handleLogin = (event) => {
     event.preventDefault();
     axios
@@ -32,6 +44,7 @@ const SignUpForm = () => {
       });
   };
 
+  //signup form using tailwind
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-400">
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">

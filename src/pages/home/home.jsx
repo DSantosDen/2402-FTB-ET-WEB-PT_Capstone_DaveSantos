@@ -1,9 +1,15 @@
+//imports for useEffect and useState, axios and pages
 import { useEffect, useState } from "react";
 import Card from "../../components/cards/cards";
 import axios from "axios";
 import SortPopup from "../../components/sort-popup/sort-popup";
 import FilterPopup from "../../components/filter-popup/filter-popup";
 
+/*using useState to define state variables ogdata=raw api data, and
+data=sorted data results.
+Default states for variables are empty arrays or booleans set to false
+useEffect hook used to fetch data from API
+*/
 function Home() {
   const [ogdata, setOgData] = useState([]);
   const [data, setData] = useState([]);
@@ -13,12 +19,21 @@ function Home() {
     fetchData();
   }, []);
 
+  /*function makes a GET request to API using AXIOS, then fetched data
+  is stored in the data and ogdata variables
+   */
   const fetchData = async () => {
     let res = await axios.get("https://fakestoreapi.com/products");
     setData(res.data);
     setOgData(res.data);
   };
 
+  /*function helps to sort data by price and description.
+  default variable for sorteData is an empty array.
+  Type checking using sortBy to check value is of type "number"
+  if value is number, sort descending else descending.
+
+  */
   function customSort(sortBy, sortType) {
     let sortedData = [];
     if (typeof ogdata[0][sortBy] == "number") {
@@ -38,12 +53,22 @@ function Home() {
     setData([...sortedData]);
   }
 
+  /*variables to control the visibility of the
+  popup cards (sort and filter cards)
+   */
   const handleCloseSortPopup = () => {
     setShowSortingPopup(false);
   };
   const handleCloseFilterPopup = () => {
     setShowFilterPopup(false);
   };
+
+  /*function takes three parameters to filter the ogdata from API.
+  result will be the basis for the filtering.
+  if category is provided, filter item by categoy
+  if min price is provided, filter price that is >= to provided price
+  if max price is provided, filter price that is <= to provided price 
+   */
   const customFilter = (category, min_price, max_price) => {
     let result = ogdata;
     if (category) {
@@ -61,6 +86,10 @@ function Home() {
   };
   return (
     <>
+      {/*these are event handlers to close sort and filter popups
+
+      
+      */}
       {showFilterPopup && (
         <FilterPopup
           customFilter={customFilter}
@@ -89,7 +118,7 @@ function Home() {
           Sort
         </button>
       </div>
-
+      {/*snippet to render the card  */}
       <div className="flex flex-wrap mx-auto justify-center">
         {data.map((item) => (
           <Card

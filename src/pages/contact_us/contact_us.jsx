@@ -1,3 +1,4 @@
+//page content using tailwind
 const ContactUs = () => {
   return (
     <div className="bg-gray-900 text-white p-10">
