@@ -1,6 +1,9 @@
 //imports
 import { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setToken } from "../../redux/actions/user";
+import { useNavigate } from "react-router-dom";
 
 /*useState function component to update the data state
 set initial values for username and password to null*/
@@ -9,6 +12,8 @@ const SignUpForm = () => {
     username: null,
     password: null,
   });
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   /*event handlers to manage changes in input fields
   log the name and value of the input field being changed
@@ -38,6 +43,8 @@ const SignUpForm = () => {
       })
       .then((res) => {
         localStorage.setItem("token", res.data.token);
+        dispatch(setToken(res.data.token));
+        navigate("/");
       })
       .catch((err) => {
         alert(err.response.data);

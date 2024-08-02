@@ -35,21 +35,20 @@ function Home() {
 
   */
   function customSort(sortBy, sortType) {
-    let sortedData = [];
+    let sortedData = ogdata;
     if (typeof ogdata[0][sortBy] == "number") {
       if (sortType == 1) {
-        sortedData = ogdata.sort((a, b) => b[sortBy] - a[sortBy]);
+        sortedData.sort((a, b) => b[sortBy] - a[sortBy]);
       } else {
-        sortedData = ogdata.sort((a, b) => a[sortBy] - b[sortBy]);
+        sortedData.sort((a, b) => a[sortBy] - b[sortBy]);
       }
     } else {
       if (sortType == 1) {
-        sortedData = ogdata.sort((a, b) => b[sortBy] < a[sortBy]);
+        sortedData.sort((a, b) => (b[sortBy] < a[sortBy] ? 1 : -1));
       } else {
-        sortedData = ogdata.sort((a, b) => a[sortBy] < b[sortBy]);
+        sortedData.sort((a, b) => (a[sortBy] < b[sortBy] ? 1 : -1));
       }
     }
-    console.log(sortedData, sortBy);
     setData([...sortedData]);
   }
 

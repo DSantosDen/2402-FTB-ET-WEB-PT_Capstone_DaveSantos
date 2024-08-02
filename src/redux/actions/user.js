@@ -1,28 +1,19 @@
-/*imports from redux toolkit. 
-Redux offers centralized state management, predictable state updates, 
-easier debugging with Redux DevTools, and improved performance by
- minimizing state updates and reducing prop drilling.
- READ: https://www.freecodecamp.org/news/redux-and-redux-toolkit-for-beginners/
-*/
 import { createSlice } from "@reduxjs/toolkit";
 
-const cartSlice = createSlice({
+const userSlice = createSlice({
   name: "user",
-  initialState: [],
+  initialState: {
+    token: localStorage.getItem("token") || null,
+  },
   reducers: {
-    addToCart(state, action) {
-      state.push({
-        ...action.payload,
-      });
+    setToken(state, action) {
+      state.token = action.payload;
     },
-    deleteItem(state, action) {
-      const filterProduct = state.filter(
-        (products) => products.id !== action.payload
-      );
-      state = filterProduct;
+    removeToken(state, action) {
+      state.token = null;
     },
   },
 });
 
-export const { addToCart, deleteItem } = cartSlice.actions;
-export default cartSlice.reducer;
+export const { setToken, removeToken } = userSlice.actions;
+export default userSlice.reducer;
