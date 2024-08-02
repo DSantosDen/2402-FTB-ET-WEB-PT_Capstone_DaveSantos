@@ -1,9 +1,13 @@
+//imports
 import { Link } from "react-router-dom";
 import Logo from "../../assets/img/Junk_Vault_Logo_White.png";
 import { FaCaretDown, FaCartPlus } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 
+/* 
+
+*/
 const Navbar = () => {
   const cart = useSelector((state) => state.cart);
   return (
@@ -28,12 +32,13 @@ const Navbar = () => {
             </div>
             <FaCartShopping />
           </button>
-          <button
+          <Link
+            to="/login"
             type="button"
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Sign In
-          </button>
+          </Link>
           <button
             data-collapse-toggle="navbar-sticky"
             type="button"
