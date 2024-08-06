@@ -1,4 +1,3 @@
-//imports for "react-router-dom", "react-redux", "navbar", "footer", and multiple pages
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./redux/store.js";
@@ -14,7 +13,7 @@ import TermsOfUse from "./pages/terms-of-use/terms-of-use.jsx";
 import Navbar from "./components/navbar/navbar.jsx";
 import Footer from "./components/footer/footer.jsx";
 
-//
+// The Provider component makes the Redux store available to any nested components that need access to it.
 function App() {
   return (
     <Provider store={store}>

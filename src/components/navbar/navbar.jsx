@@ -3,14 +3,28 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/img/Junk_Vault_Logo_White.png";
 import { FaCaretDown, FaCartPlus } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
+import { setUserID } from "../../redux/actions/user";
 
 /* 
 
 */
 const Navbar = () => {
   const cart = useSelector((state) => state.cart);
-  const token = useSelector((state) => state.user.token);
+  const { token, userId } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    try {
+      if (token && !userId) {
+        const { sub } = jwtDecode(token);
+        dispatch(setUserID(sub));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }, [token, userId]);
   return (
     <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">

@@ -1,0 +1,17 @@
+C:\Projects\Courseware\00_Capstone_Project\capstoneProject\src\App.jsx
+C:\Projects\Courseware\00_Capstone_Project\capstoneProject\src\main.jsx
+C:\Projects\Courseware\00_Capstone_Project\capstoneProject\src\components\cards\cards.jsx
+C:\Projects\Courseware\00_Capstone_Project\capstoneProject\src\components\filter-popup\filter-popup.jsx
+C:\Projects\Courseware\00_Capstone_Project\capstoneProject\src\components\footer\footer.jsx
+C:\Projects\Courseware\00_Capstone_Project\capstoneProject\src\components\navbar\navbar.jsx
+C:\Projects\Courseware\00_Capstone_Project\capstoneProject\src\components\searchinput\searchinput.jsx
+C:\Projects\Courseware\00_Capstone_Project\capstoneProject\src\components\sort-popup\sort-popup.jsx
+C:\Projects\Courseware\00_Capstone_Project\capstoneProject\src\pages\cart\cart.jsx
+C:\Projects\Courseware\00_Capstone_Project\capstoneProject\src\pages\contact_us\contact_us.jsx
+C:\Projects\Courseware\00_Capstone_Project\capstoneProject\src\pages\faq\faq.jsx
+C:\Projects\Courseware\00_Capstone_Project\capstoneProject\src\pages\help\help.jsx
+C:\Projects\Courseware\00_Capstone_Project\capstoneProject\src\pages\home\home.jsx
+C:\Projects\Courseware\00_Capstone_Project\capstoneProject\src\pages\login\login.jsx
+C:\Projects\Courseware\00_Capstone_Project\capstoneProject\src\pages\product-details\product-details.jsx
+C:\Projects\Courseware\00_Capstone_Project\capstoneProject\src\pages\signup\signup.jsx
+C:\Projects\Courseware\00_Capstone_Project\capstoneProject\src\pages\terms-of-use\terms-of-use.jsx
