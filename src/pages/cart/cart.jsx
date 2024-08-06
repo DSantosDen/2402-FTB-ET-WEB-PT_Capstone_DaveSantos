@@ -1,27 +1,51 @@
+/*To use redux I need actions, reducers and store
+https://redux.js.org/tutorials/fundamentals/part-5-ui-react#what-youve-learned
+https://betterprogramming.pub/react-hooks-redux-basics-edition-6f95411a7754
+ */
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+
 function Cart() {
-  const items = [
-    {
-      id: 2,
-      title: "Mens Casual Premium Slim Fit T-Shirts ",
-      price: 22.3,
-      description:
-        "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
-      category: "men's clothing",
-      image:
-        "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
-      rating: { rate: 4.1, count: 259 },
-    },
-    {
-      id: 4,
-      title: "Mens Casual Slim Fit",
-      price: 15.99,
-      description:
-        "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
-      category: "men's clothing",
-      image: "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
-      rating: { rate: 2.1, count: 430 },
-    },
-  ];
+  //local state for managing loading and error states
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  //redux actions to make changes from the redux store
+  const dispatch = useDispatch();
+  const { userId } = useSelector((state) => state.user);
+  const items = useSelector((state) => state.cart.items);
+
+  /*
+  react hook to fetch cart items, if userId is true
+  else error message is displayed
+  */
+  useEffect(() => {
+    if (userId) {
+      fetchCartItems();
+    } else {
+      setLoading(false);
+      setError("User not logged in");
+    }
+  }, [userId]);
+
+  //fetch cart items from the API
+  const fetchCartItems = async () => {
+    try {
+      //GET request to the API to fetch cart items for the user
+      const response = await axios.get(
+        `https://fakestoreapi.com/carts/${userId}`
+      );
+      const cartItems = response.data.products;
+      console.log(cartItems);
+      // dispatch action to update Redux store with fetched cart items
+      dispatch(fetchCartItemsSuccess(cartItems));
+      setLoading(false); // Set loading to false after successful fetch
+    } catch (err) {
+      setLoading(false); // Set loading to false in case of error
+      setError("Failed to fetch cart items"); // Set error message
+      dispatch(fetchCartItemsFailure(err.message)); // Dispatch action to update Redux store with error
+    }
+  };
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">

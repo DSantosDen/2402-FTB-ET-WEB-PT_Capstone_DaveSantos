@@ -1,16 +1,34 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addToCart } from "../../redux/actions/cart";
+import { add } from "../../api/cart";
 
+// Defining the ProductCard component, which accepts product details as props
 const ProductCard = ({ id, title, img, price }) => {
+  // Using useNavigate hook to navigate programmatically
   const navigate = useNavigate();
+
+  // Accessing the cart state from the Redux store.
+  const cart = useSelector((state) => state.cart);
+
+  // Extracting userId from the user state in the Redux store
+  const { userId } = useSelector((state) => state.user);
+
+  // Using useDispatch hook to dispatch actions to the Redux store
   const dispatch = useDispatch();
+
+  // Function to navigate to the product details page
   const gotoDetail = () => {
     navigate("/product/" + id);
   };
 
+  // Function to handle adding the product to the cart
   const handleAddtoCart = () => {
+    if (!userId) {
+      return (window.location.href = "/login");
+    }
+    // Dispatching the addToCart action to update the cart state in Redux store
     dispatch(
       addToCart({
         id,
@@ -19,7 +37,20 @@ const ProductCard = ({ id, title, img, price }) => {
         price,
       })
     );
+
+    // Adding the product to the cart in the backend
+    add(userId, [
+      ...cart,
+      {
+        id,
+        title,
+        img,
+        price,
+      },
+    ]);
   };
+
+  // Rendering the product card
   return (
     <div className="w-[200px]  p-2 pt-0  m-2 rounded-md bg-white dark:bg-gray-800">
       <nav className="flex mb-4" aria-label="Breadcrumb"></nav>
