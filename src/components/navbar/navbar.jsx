@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import { setUserID } from "../../redux/actions/user";
+import axios from "axios";
+import { setCart } from "../../redux/actions/cart";
 
 /* 
 
@@ -25,6 +27,31 @@ const Navbar = () => {
       console.log(e);
     }
   }, [token, userId]);
+
+  useEffect(() => {
+    if (userId) {
+      loadCart();
+    }
+  }, [userId]);
+
+  const loadCart = async () => {
+    try {
+      let product = (await axios.get("https://fakestoreapi.com/products")).data;
+      //mapper start
+      let temp = {};
+      product.forEach((obj) => {
+        temp[obj.id] = obj;
+      });
+      //all of cart products
+      let cart = (await axios.get("https://fakestoreapi.com/carts/" + userId))
+        .data.products;
+      //merging data between api and cart
+      let finalData = cart.map((obj) => {
+        return { ...obj, ...temp[obj.productId] };
+      });
+      dispatch(setCart(finalData));
+    } catch {}
+  };
   return (
     <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -38,15 +65,15 @@ const Navbar = () => {
           </span>
         </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-          <button
-            type="button"
+          <Link
+            to={userId ? "/cart" : "/login"}
             className="text-white mr-8 text-[25px] relative"
           >
             <div className="bg-red-600 w-[15px] h-[15px] text-white absolute right-[-8px] top-[-4px] text-[10px] font-bold grid place-content-center rounded-full">
               {cart.length}
             </div>
             <FaCartShopping />
-          </button>
+          </Link>
           {token ? null : (
             <Link
               to="/login"
