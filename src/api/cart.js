@@ -10,8 +10,8 @@ export const add = (userId, products) => {
 };
 
 //function to update via POST request to API
-export const update = (userId, products) => {
-  return axios.post("https://fakestoreapi.com/carts", {
+export const update = (userId, cartId, products) => {
+  return axios.patch("https://fakestoreapi.com/carts/" + cartId, {
     userId: userId,
     products: products,
   });

@@ -36,6 +36,7 @@ const ProductCard = ({ id, title, img, price }) => {
         title,
         img,
         price,
+        quantity: 1,
       })
     );
 

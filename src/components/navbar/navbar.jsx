@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import { setUserID } from "../../redux/actions/user";
 import axios from "axios";
-import { setCart } from "../../redux/actions/cart";
+import { setCart, setCartId } from "../../redux/actions/cart";
 
 //navigation bar component
 const Navbar = () => {
@@ -17,7 +17,7 @@ const Navbar = () => {
     dispatch action allows dispatching to the redux store 
     */
   }
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.cart.products);
   const { token, userId } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   {
@@ -58,13 +58,17 @@ const Navbar = () => {
         temp[obj.id] = obj;
       });
       //Another API request to get the user's cart
-      let cart = (await axios.get("https://fakestoreapi.com/carts/" + userId))
-        .data.products;
+      let res = await axios.get(
+        "https://fakestoreapi.com/carts/user/" + userId
+      );
+
+      let cart = res.data[0]?.products || [];
       //merging data by using mapper as source and extract based on user's cart products
       let finalData = cart.map((obj) => {
         return { ...obj, ...temp[obj.productId] };
       });
       dispatch(setCart(finalData));
+      dispatch(setCartId(res.data[0]?.id));
     } catch {}
   };
   //tailwind cose used to style and position logo, cart icon, and navigation links

@@ -1,32 +1,31 @@
 //imports
-//import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { setCart } from "../../redux/actions/cart";
+import { update } from "../../api/cart";
 
 //component function to manage the cart
 function Cart() {
   //redux actions to make changes from the redux store
   const dispatch = useDispatch();
   const { userId } = useSelector((state) => state.user);
-  const cart = useSelector((state) => state.cart);
+  const { products, cartId } = useSelector((state) => state.cart);
 
   const handleAdd = (productId) => {
-    let temp = [...cart];
-    console.log(cart);
+    let temp = JSON.parse(JSON.stringify(products));
     let index = temp.findIndex((obj) => obj.productId == productId);
     console.log({ index });
     if (index == -1) return alert("product not found");
     temp[index].quantity = temp[index].quantity + 1;
-    console.log(temp);
     dispatch(setCart(temp));
+    update(userId, cartId, temp);
   };
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <div className="bg-white p-4 rounded shadow">
         <h1 className="text-2xl font-bold mb-4">Shopping Cart</h1>
         <div className="border-t border-gray-300 pt-4">
-          {cart?.map((item) => (
+          {products?.map((item) => (
             <div key={item.id} className="flex mb-4">
               <div className="flex-shrink-0">
                 <img className="h-24 w-24" src={item.image} alt={item.title} />
