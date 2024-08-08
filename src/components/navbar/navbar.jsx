@@ -10,13 +10,23 @@ import { setUserID } from "../../redux/actions/user";
 import axios from "axios";
 import { setCart } from "../../redux/actions/cart";
 
-/* 
-
-*/
+//navigation bar component
 const Navbar = () => {
+  {
+    /*cart, token and userId access the cart state from redux store.
+    dispatch action allows dispatching to the redux store 
+    */
+  }
   const cart = useSelector((state) => state.cart);
   const { token, userId } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  {
+    /*1st useEffect hook runs when token or userId change. Decodes JWT token
+    to get userId and sets it in the redux store.
+    2ns useEffect hook runs when userId changes. It calls "loadCart" to load
+    the user's cart 
+     */
+  }
   useEffect(() => {
     try {
       if (token && !userId) {
@@ -34,24 +44,30 @@ const Navbar = () => {
     }
   }, [userId]);
 
+  /*loadCart function makes and . 
+  
+  */
   const loadCart = async () => {
     try {
       let product = (await axios.get("https://fakestoreapi.com/products")).data;
-      //mapper start
+      /*(mapper) API request to get all products
+        and stores them in temp object
+      */
       let temp = {};
       product.forEach((obj) => {
         temp[obj.id] = obj;
       });
-      //all of cart products
+      //Another API request to get the user's cart
       let cart = (await axios.get("https://fakestoreapi.com/carts/" + userId))
         .data.products;
-      //merging data between api and cart
+      //merging data by using mapper as source and extract based on user's cart products
       let finalData = cart.map((obj) => {
         return { ...obj, ...temp[obj.productId] };
       });
       dispatch(setCart(finalData));
     } catch {}
   };
+  //tailwind cose used to style and position logo, cart icon, and navigation links
   return (
     <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">

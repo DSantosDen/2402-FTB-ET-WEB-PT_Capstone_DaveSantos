@@ -1,21 +1,28 @@
+//imports
 import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 
+/*function component calls two props - gets the state of
+category, min_price, max_price, and a handler to close the card
+with handleCloseFilterPopup */
 const FilterPopup = ({ customFilter, handleCloseFilterPopup }) => {
   const [category, setCategory] = useState("");
   const [min_price, setMinPrice] = useState("");
   const [max_price, setMaxPrice] = useState("");
 
+  //event handler
   const handleClick = () => {
     customFilter(category, min_price, max_price);
     handleCloseFilterPopup();
   };
 
+  //function to reset the filter and closes the filter popup
   const reset = () => {
     customFilter(undefined, undefined, undefined);
     handleCloseFilterPopup();
   };
 
+  //tailwind code used to format the card and the close button
   return (
     <div className="w-full h-[100vh] fixed bg-[#00000082] flex justify-center ">
       <div className="bg-white relative max-w-[400px] h-[400px] rounded-md w-full mt-[10%]">
@@ -24,6 +31,8 @@ const FilterPopup = ({ customFilter, handleCloseFilterPopup }) => {
           className="w-[25px] h-[25px] grid place-content-center border border-1 rounded-full bg-white border-black absolute top-[-10px] right-[-1px]"
         >
           <FaTimes />
+          {/*tailwind code used for category buttons, onClick changes button color
+          and updates the state*/}
         </button>
         <div>
           <div className="mt-5">
@@ -68,11 +77,16 @@ const FilterPopup = ({ customFilter, handleCloseFilterPopup }) => {
               Women's Clothing
             </button>
           </div>
+          {/*tailwind code used for min and max price input fields*/}
           <div>
             <div className="ml-2 mt-5">
               <label>Min Price</label>
+              {/*attributes to handle inputs from both input fields:
+              numbers only, guide to user, event handler.
+              event object (e) gets value from input converts it to string,
+              convert string value to floating number, then variable is updated
+              */}
               <input
-                //keep the values to two decimal places
                 type="number"
                 placeholder="Enter Min Price"
                 onChange={(e) => setMinPrice(parseFloat(e.target.value))}
@@ -82,7 +96,6 @@ const FilterPopup = ({ customFilter, handleCloseFilterPopup }) => {
             <div className="ml-2 mt-5">
               <label>Max Price</label>
               <input
-                //keep the values to two decimal places
                 type="number"
                 onChange={(e) => setMaxPrice(parseFloat(e.target.value))}
                 placeholder="Enter Max Price"

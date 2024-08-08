@@ -1,3 +1,4 @@
+//imports
 import { Link } from "react-router-dom";
 import Logo from "../../assets/img/Junk_Vault_Logo_White.png";
 import {
@@ -6,6 +7,8 @@ import {
   FaTwitter,
   FaPinterest,
 } from "react-icons/fa";
+
+//array to better manage social media icons
 const socialLinks = [
   {
     href: "https://www.facebook.com/",
@@ -29,6 +32,7 @@ const socialLinks = [
   },
 ];
 
+//component to render the footer with routes to pages
 const Footer = () => {
   return (
     <footer className="p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-900">

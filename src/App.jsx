@@ -1,3 +1,4 @@
+//imports
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./redux/store.js";
@@ -13,13 +14,20 @@ import TermsOfUse from "./pages/terms-of-use/terms-of-use.jsx";
 import Navbar from "./components/navbar/navbar.jsx";
 import Footer from "./components/footer/footer.jsx";
 
-// The Provider component makes the Redux store available to any nested components that need access to it.
+//App wraps the entire application in the provider component
 function App() {
   return (
+    /*Provider is the component from react-redux that help
+    connect the app to a redux store, and the Redux store
+    is being passed as a prop
+    */
     <Provider store={store}>
+      {/*BrowserRouter (from react-router-dom) is used to enable routing*/}
       <BrowserRouter>
+        {/*Navigation bar component*/}
         <Navbar />
         <div className="mt-[70px] min-h-[350px]">
+          {/*route components to multiple pages*/}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/cart" element={<Cart />} />
@@ -32,6 +40,7 @@ function App() {
             <Route path="/terms_of_use" element={<TermsOfUse />} />
           </Routes>
         </div>
+        {/*footer component*/}
         <Footer />
       </BrowserRouter>
     </Provider>

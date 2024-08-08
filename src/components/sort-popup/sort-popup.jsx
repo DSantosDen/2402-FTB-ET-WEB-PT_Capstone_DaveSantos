@@ -1,15 +1,26 @@
+//imports
 import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 
+/*function component calls two props - customSort, 
+and a handler to close the card with handleCloseSortPopup
+*/
 const SortPopup = ({ customSort, handleCloseSortPopup }) => {
+  {
+    /*arguments using sortBy for price or sortType for description.
+    the change triggers a re-render
+    */
+  }
   const [sortBy, setSortBy] = useState("price");
   const [sortType, setSortType] = useState(1);
 
+  //event handler
   const handleClick = () => {
     customSort(sortBy, sortType);
     handleCloseSortPopup();
   };
 
+  //tailwind code used to format the card and the close button
   return (
     <div className="w-full h-[100vh] fixed bg-[#00000082] flex justify-center ">
       <div className="bg-white relative max-w-[400px] h-[400px] rounded-md w-full mt-[10%]">
@@ -18,6 +29,8 @@ const SortPopup = ({ customSort, handleCloseSortPopup }) => {
           className="w-[25px] h-[25px] grid place-content-center border border-1 rounded-full bg-white border-black absolute top-[-10px] right-[-1px]"
         >
           <FaTimes />
+          {/*tailwind code used for title and price buttons, onClick changes button color
+          and updates the state*/}
         </button>
         <div>
           <h4 className="mt-4 ml-2">Title</h4>

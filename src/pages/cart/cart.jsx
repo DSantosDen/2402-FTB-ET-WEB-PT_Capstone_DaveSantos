@@ -1,12 +1,10 @@
-/*To use redux I need actions, reducers and store
-https://redux.js.org/tutorials/fundamentals/part-5-ui-react#what-youve-learned
-https://betterprogramming.pub/react-hooks-redux-basics-edition-6f95411a7754
- */
-import React, { useEffect, useState } from "react";
+//imports
+//import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { setCart } from "../../redux/actions/cart";
+
+//component function to manage the cart
 function Cart() {
   //redux actions to make changes from the redux store
   const dispatch = useDispatch();
@@ -56,7 +54,6 @@ function Cart() {
               </div>
               <div className="flex-shrink-0 ml-4">
                 <button className="text-blue-500">Delete</button>
-                <button className="text-blue-500 mt-2">Save for later</button>
               </div>
             </div>
           ))}
