@@ -1,5 +1,7 @@
+//imports
 import { useEffect } from "react";
 
+//
 const TermsOfUse = () => {
   useEffect(() => {
     window.scroll(0, 0);
