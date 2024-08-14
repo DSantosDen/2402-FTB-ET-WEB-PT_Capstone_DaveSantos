@@ -38,39 +38,6 @@ const Navbar = () => {
     }
   }, [token, userId]);
 
-  useEffect(() => {
-    if (userId) {
-      loadCart();
-    }
-  }, [userId]);
-
-  /*loadCart function makes and . 
-  
-  */
-  const loadCart = async () => {
-    try {
-      let product = (await axios.get("https://fakestoreapi.com/products")).data;
-      /*(mapper) API request to get all products
-        and stores them in temp object
-      */
-      let temp = {};
-      product.forEach((obj) => {
-        temp[obj.id] = obj;
-      });
-      //Another API request to get the user's cart
-      let res = await axios.get(
-        "https://fakestoreapi.com/carts/user/" + userId
-      );
-
-      let cart = res.data[0]?.products || [];
-      //merging data by using mapper as source and extract based on user's cart products
-      let finalData = cart.map((obj) => {
-        return { ...obj, ...temp[obj.productId] };
-      });
-      dispatch(setCart(finalData));
-      dispatch(setCartId(res.data[0]?.id));
-    } catch {}
-  };
   //tailwind cose used to style and position logo, cart icon, and navigation links
   return (
     <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">

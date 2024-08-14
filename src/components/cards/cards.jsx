@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addToCart } from "../../redux/actions/cart";
-import { add } from "../../api/cart";
 
 // Defining the ProductCard component, which accepts product details as props
 const ProductCard = ({ id, title, img, price }) => {
@@ -39,17 +38,6 @@ const ProductCard = ({ id, title, img, price }) => {
         quantity: 1,
       })
     );
-
-    // Adding the product to the cart in the backend
-    add(userId, [
-      ...cart,
-      {
-        id,
-        title,
-        img,
-        price,
-      },
-    ]);
   };
 
   // Rendering the product card
